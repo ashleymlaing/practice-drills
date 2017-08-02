@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2017 by ashleymlaing (http://jsbin.com/gufuyes/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+ul{
+  list-style:none;
+}
+</style>
+</head>
+<body>
+<input type="text" placeholder="Type Name" value="">
+  <h2>Student Names</h2>
+  <ul class="nameList"></ul>
+  <h2>Present Students</h2>
+  <ul class="attendanceList"></ul>
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script id="jsbin-javascript">
+var name;
+var studentHere;
+
+//Adding name to student list
+$('input').keypress(function(finished){
+  if(finished.which == 13){
+  name=$(this).val();
+  console.log(name);
+  $('.nameList').append("<li>" + name + "</li>");
+   $('input').val('');
+  };
+});
+
+
+//marking student here
+$('.nameList').on('click',"li",function(){
+  studentHere=$(this).html();
+  console.log(studentHere);
+  $('.attendanceList').append("<li>" + studentHere + "</li>");
+  //$(this).remove();
+});
+</script>
+</body>
+</html>
