@@ -102,16 +102,87 @@
 // });
 
 function moveBox_1_2 (){
-  $('#spotOne').css('left','45%').css('transition','left 4s');
-  $('#spotTwo').css('left','35%').css('transition','left 4s');
+
+  if($('#spotOne').css('left')=='35%'){
+    if($('spotTwo').css('left')=='45%'){
+      $('#spotOne').css('left','45%').css('transition','left 4s');
+      $('#spotTwo').css('left','35%').css('transition','left 4s');
+    }else{
+      $('#spotOne').css('left','55%').css('transition','left 4s');
+      $('#spotTwo').css('left','35%').css('transition','left 4s');
+    }
+  }else if($('#spotOne').css('left')=='45%'){
+    if($('#spotTwo').css('left')=='35%'){
+      $('#spotOne').css('left','35%').css('transition','left 4s');
+      $('#spotTwo').css('left','45%').css('transition','left 4s');
+    }else{
+      $('#spotOne').css('left','55%').css('transition','left 4s');
+      $('#spotTwo').css('left','45%').css('transition','left 4s');
+    }
+  }else if($('#spotOne').css('left')=='55%'){
+    if($('#spotTwo').css('left')=='35%'){
+      $('#spotOne').css('left','35%').css('transition','left 4s');
+      $('#spotTwo').css('left','55%').css('transition','left 4s');
+    }else{
+      $('#spotOne').css('left','45%').css('transition','left 4s');
+      $('#spotTwo').css('left','55%').css('transition','left 4s');
+    }
+  }
+
 }
 function moveBox_2_3 (){
-  $('#spotThree').css('left','45%').css('transition','left 4s');
-  $('#spotTwo').css('left','55%').css('transition','left 4s');
+  if($('#spotTwo').css('left')=='35%'){
+    if($('spotThree').css('left')=='45%'){
+      $('#spotTwo').css('left','45%').css('transition','left 4s');
+      $('#spotThree').css('left','35%').css('transition','left 4s');
+    }else{
+      $('#spotTwo').css('left','55%').css('transition','left 4s');
+      $('#spotThree').css('left','35%').css('transition','left 4s');
+    }
+  }else if($('#spotTwo').css('left')=='45%'){
+    if($('#spotThree').css('left')=='35%'){
+      $('#spotTwo').css('left','35%').css('transition','left 4s');
+      $('#spotThree').css('left','45%').css('transition','left 4s');
+    }else{
+      $('#spotTwo').css('left','55%').css('transition','left 4s');
+      $('#spotThree').css('left','45%').css('transition','left 4s');
+    }
+  }else if($('#spotTwo').css('left')=='55%'){
+    if($('#spotThree').css('left')=='35%'){
+      $('#spotTwo').css('left','35%').css('transition','left 4s');
+      $('#spotThree').css('left','55%').css('transition','left 4s');
+    }else{
+      $('#spotTwo').css('left','45%').css('transition','left 4s');
+      $('#spotThree').css('left','55%').css('transition','left 4s');
+    }
+  }
 }
 function moveBox_1_3 (){
-  $('#spotOne').css('left','55%').css('transition','left 4s');
-  $('#spotThree').css('left','35%').css('transition','left 4s');
+  if($('#spotOne').css('left')=='35%'){
+    if($('spotThree').css('left')=='45%'){
+      $('#spotOne').css('left','45%').css('transition','left 4s');
+      $('#spotThree').css('left','35%').css('transition','left 4s');
+    }else{
+      $('#spotOne').css('left','55%').css('transition','left 4s');
+      $('#spotThree').css('left','35%').css('transition','left 4s');
+    }
+  }else if($('#spotOne').css('left')=='45%'){
+    if($('#spotThree').css('left')=='35%'){
+      $('#spotOne').css('left','35%').css('transition','left 4s');
+      $('#spotThree').css('left','45%').css('transition','left 4s');
+    }else{
+      $('#spotOne').css('left','55%').css('transition','left 4s');
+      $('#spotThree').css('left','45%').css('transition','left 4s');
+    }
+  }else if($('#spotOne').css('left')=='55%'){
+    if($('#spotThree').css('left')=='35%'){
+      $('#spotOne').css('left','35%').css('transition','left 4s');
+      $('#spotThree').css('left','55%').css('transition','left 4s');
+    }else{
+      $('#spotOne').css('left','45%').css('transition','left 4s');
+      $('#spotThree').css('left','55%').css('transition','left 4s');
+    }
+  }
 }
 
 function pickMove() {
@@ -119,12 +190,15 @@ function pickMove() {
   if(pick == 1){
     moveBox_1_2();
     console.log('moved 1 and 2');
+    alert('moved box');
   }else if (pick == 2) {
     moveBox_2_3();
     console.log('moved 2 and 3');
+    alert('moved box');
   }else{
     moveBox_1_3();
     console.log('moved 1 and 3');
+    alert('moved box');
   }
 }
 
@@ -132,12 +206,9 @@ $(document).ready(function(){
   setInterval(function(){
     $('div').css('top','12%').css('transition','top 4s');
   },3000);
-  var i = 0;
-  setTimeout(function(){
-    while(i<6){
+  setInterval(function(){
+    for(var i = 0;i<6;i++){
       pickMove();
-      i++;
-      alert('moved box');
     }
   },7000);
 });
