@@ -1,214 +1,253 @@
-//
-// $(document).ready(function(){
-//   var playerScore = 0;
-//   var comptScore = 0;
-//
-//   $('aside').hide();
-//   $('div').hide();
-//   $('.playerScore').append(playerScore);
-//   $('.compScore').append(comptScore);
-//   $('.stop').hide();
-//   $('.circle').show();
-//   setInterval(function(){
-//       $('div').css('animation', 'single_rotate 3s linear reverse');
-//     },6000);
-//   $('.start').on('click',function(){
-//     $('div').show();
-//     $('.start').hide();
-//     $('.stop').show();
-//     $('aside').show();
-//     setTimeout(function(){
-//       $('.circle').hide();
-//     },2000);
-//     alert("Guess where the pink ball went");
-//
-//   });
-//
-//
-//   $('div').on('click',function(){
-//     $(this).addClass('picked');
-//     var winner = Math.round(Math.random()*100);
-//     //console.log(winner);
-//     if(winner <= 33){
-//       $('div').css('background-color','yellow');
-//       $(this).css('background-color','purple');
-//       $('.circle').css('margin-left','0px').show();
-//       if($('#spotOne').hasClass('picked')){
-//         $('#spotOne').css('background-color','lightgreen');
-//         playerScore++;
-//         $('.playerScore').empty();
-//         $('.playerScore').append("<p>Your Score</p>" + playerScore);
-//         $('div').css('animation','single_rotate 3s linear reverse infinite');
-//       }else{
-//         comptScore++;
-//         $('.compScore').empty();
-//         $('.compScore').append("<p>Comp Score</p>"+comptScore);
-//       }
-//       setTimeout(function(){
-//         $('div').css('background-color','yellow');
-//         $('.circle').hide();
-//         $('div').removeClass('picked');
-//       },2000);
-//       $('div').css('animation','single_rotate 3s linear reverse infinite').css('animation-delay','5s');
-//     }else if(winner> 33 && winner <= 66){
-//       $('div').css('background-color','yellow');
-//       $(this).css('background-color','purple');
-//       $('.circle').css('margin-left','30%').show();
-//       if($('#spotTwo').hasClass('picked')){
-//         $('#spotTwo').css('background-color','lightgreen');
-//         playerScore++;
-//         $('.playerScore').empty();
-//         $('.playerScore').append("<p>Your Score</p>" + playerScore);
-//       }else{
-//         comptScore++;
-//         $('.compScore').empty();
-//         $('.compScore').append("<p>Comp Score</p>"+comptScore);
-//       }
-//       setTimeout(function(){
-//         $('div').css('background-color','yellow');
-//         $('.circle').hide();
-//         $('div').removeClass('picked');
-//       },2000);
-//       $('div').css('animation','single_rotate 3s linear reverse infinite').css('animation-delay','5s');
-//     }else if(winner> 66 && winner <= 100){
-//       $('div').css('background-color','yellow');
-//       $(this).css('background-color','purple');
-//       $('.circle').css('margin-left','60%').show();
-//       if($('#spotThree').hasClass('picked')){
-//         $('#spotThree').css('background-color','lightgreen');
-//         playerScore++;
-//         $('.playerScore').empty();
-//         $('.playerScore').append("<p>Your Score</p>" + playerScore);
-//       }else{
-//         comptScore++;
-//         $('.compScore').empty();
-//         $('.compScore').append("<p>Comp Score</p>"+comptScore);
-//       }
-//       $('div').css('animation','single_rotate 3s linear reverse infinite').css('animation-delay','5s');
-//       setTimeout(function(){
-//         $('div').css('background-color','yellow');
-//         $('.circle').hide();
-//         $('div').removeClass('picked');
-//       },2000);
-//     }
-//   });
-//   $('.stop').on('click',function(){
-//     $('div').hide();
-//     $('.start').show();
-//     $('.stop').hide();
-//   });
-//
-//
-// });
+  var playerScore = 0;
+  var comptScore = 0;
+var gamePlaying = null;
+var gameMessage = null;
 
-function moveBox_1_2 (){
+function movingBox(){
+  var randomMove = Math.round(Math.random()* (3 - 1) + 1);
+  console.log(randomMove);
+  if(randomMove == 1 ){
+    $('#spotThree').removeClass('box');
+    $('#spotOne').removeClass('box');
+    $('#spotTwo').removeClass('box');
+    $('#spotThree').removeClass('boxLeft');
+    $('#spotOne').removeClass('boxLeft');
+    $('#spotTwo').removeClass('boxLeft');
 
-  if($('#spotOne').css('left')=='35%'){
-    if($('spotTwo').css('left')=='45%'){
-      $('#spotOne').css('left','45%').css('transition','left 4s');
-      $('#spotTwo').css('left','35%').css('transition','left 4s');
+      // if($('#spotOne').css('left')>$('#spotTwo').css('left')){
+      //   $('#spotOne').addClass('boxLeft');
+      //   $('#spotTwo').addClass('box');
+      // }else{
+      //   $('#spotOne').addClass('box');
+      //   $('#spotTwo').addClass('boxLeft');
+      // }
+    if($('#spotOne').css('left')=="30%"){
+      if($('#spotTwo').css('left')=="43%"){
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotOne').style.left = "43%";
+        document.getElementById('spotTwo').style.left = "30%";
+        document.getElementById('spotThree').style.left='55%';
+      }else{
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotOne').style.left = "55%";
+        document.getElementById('spotTwo').style.left = "30%";
+        document.getElementById('spotThree').style.left='43%';
+      }
+    }else if ($('#spotOne').css('left')=="43%") {
+      if($('#spotTwo').css('left')=="30%"){
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotOne').style.left = "30%";
+        document.getElementById('spotTwo').style.left = "43%";
+        document.getElementById('spotThree').style.left='55%';
+      }else{
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotOne').style.left = "55%";
+        document.getElementById('spotTwo').style.left = "43%";
+        document.getElementById('spotThree').style.left='30%';
+      }
     }else{
-      $('#spotOne').css('left','55%').css('transition','left 4s');
-      $('#spotTwo').css('left','35%').css('transition','left 4s');
+      if($('#spotTwo').css('left')=="30%"){
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotOne').style.left = "30%";
+        document.getElementById('spotTwo').style.left = "55%";
+        document.getElementById('spotThree').style.left='43%';
+      }else{
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotOne').style.left = "43%";
+        document.getElementById('spotTwo').style.left = "30%";
+        document.getElementById('spotThree').style.left='55%';
     }
-  }else if($('#spotOne').css('left')=='45%'){
-    if($('#spotTwo').css('left')=='35%'){
-      $('#spotOne').css('left','35%').css('transition','left 4s');
-      $('#spotTwo').css('left','45%').css('transition','left 4s');
+    }
+
+  }else if(randomMove == 2){
+
+    $('#spotThree').removeClass('box');
+    $('#spotOne').removeClass('box');
+    $('#spotTwo').removeClass('box');
+    $('#spotThree').removeClass('boxLeft');
+    $('#spotOne').removeClass('boxLeft');
+    $('#spotTwo').removeClass('boxLeft');
+
+      // if($('#spotOne').css('left')>$('#spotThree').css('left')){
+      //   $('#spotOne').addClass('boxLeft');
+      //   $('#spotThree').addClass('box');
+      // }else{
+      //   $('#spotOne').addClass('box');
+      //   $('#spotThree').addClass('boxLeft');
+      // }
+
+    if($('#spotOne').css('left')=="30%"){
+      if($('#spotThree').css('left')=="43%"){
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotOne').style.left = "43%";
+        document.getElementById('spotThree').style.left = "30%";
+        document.getElementById('spotTwo').style.left = "55%";
+      }else{
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotOne').style.left = "55%";
+        document.getElementById('spotThree').style.left = "30%";
+        document.getElementById('spotTwo').style.left = "43%";
+      }
+    }else if ($('#spotOne').css('left')=="43%") {
+      if($('#spotThree').css('left')=="30%"){
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotOne').style.left = "30%";
+        document.getElementById('spotThree').style.left = "43%";
+        document.getElementById('spotTwo').style.left = "55%";
+      }else{
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotOne').style.left = "55%";
+        document.getElementById('spotThree').style.left = "43%";
+        document.getElementById('spotTwo').style.left = "30%";
+      }
     }else{
-      $('#spotOne').css('left','55%').css('transition','left 4s');
-      $('#spotTwo').css('left','45%').css('transition','left 4s');
+      if($('#spotThree').css('left')=="30%"){
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotOne').style.left = "30%";
+        document.getElementById('spotThree').style.left = "55%";
+        document.getElementById('spotTwo').style.left = "43%";
+      }else{
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotOne').style.left = "43%";
+        document.getElementById('spotThree').style.left = "30%";
+        document.getElementById('spotTwo').style.left = "55%";
     }
-  }else if($('#spotOne').css('left')=='55%'){
-    if($('#spotTwo').css('left')=='35%'){
-      $('#spotOne').css('left','35%').css('transition','left 4s');
-      $('#spotTwo').css('left','55%').css('transition','left 4s');
+    }
+
+
+  }else if (randomMove == 3) {
+    $('#spotThree').removeClass('box');
+    $('#spotOne').removeClass('box');
+    $('#spotTwo').removeClass('box');
+    $('#spotThree').removeClass('boxLeft');
+    $('#spotOne').removeClass('boxLeft');
+    $('#spotTwo').removeClass('boxLeft');
+
+      // if($('#spotTwo').css('left')>$('#spotThree').css('left')){
+      //   $('#spotTwo').addClass('boxLeft');
+      //   $('#spotThree').addClass('box');
+      // }else{
+      //   $('#spotTwo').addClass('box');
+      //   $('#spotThree').addClass('boxLeft');
+      // }
+
+    if($('#spotTwo').css('left')=="30%"){
+      if($('#spotThree').css('left')=="43%"){
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotTwo').style.left = "43%";
+        document.getElementById('spotThree').style.left = "30%";
+        document.getElementById('spotOne').style.left = "55%";
+      }else{
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotTwo').style.left = "55%";
+        document.getElementById('spotThree').style.left = "30%";
+        document.getElementById('spotOne').style.left = "43%";
+      }
+    }else if ($('#spotTwo').css('left')=="43%") {
+      if($('#spotThree').css('left')=="30%"){
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotTwo').style.left = "30%";
+        document.getElementById('spotThree').style.left = "43%";
+        document.getElementById('spotOne').style.left = "55%";
+      }else{
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotTwo').style.left = "55%";
+        document.getElementById('spotThree').style.left = "43%";
+        document.getElementById('spotOne').style.left = "30%";
+      }
     }else{
-      $('#spotOne').css('left','45%').css('transition','left 4s');
-      $('#spotTwo').css('left','55%').css('transition','left 4s');
+      if($('#spotThree').css('left')=="30%"){
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotTwo').style.left = "30%";
+        document.getElementById('spotThree').style.left = "55%";
+        document.getElementById('spotOne').style.left = "43%";
+      }else{
+        $('div').css('transition', 'left 5s');
+        document.getElementById('spotTwo').style.left = "43%";
+        document.getElementById('spotThree').style.left = "30%";
+        document.getElementById('spotOne').style.left = "55%";
     }
+    }
+
+  }else {
+    $('#spotThree').removeClass('box');
+    $('#spotOne').removeClass('box');
+    $('#spotTwo').removeClass('box');
+    $('#spotThree').removeClass('boxLeft');
+    $('#spotOne').removeClass('boxLeft');
+    $('#spotTwo').removeClass('boxLeft');
   }
 
-}
-function moveBox_2_3 (){
-  if($('#spotTwo').css('left')=='35%'){
-    if($('spotThree').css('left')=='45%'){
-      $('#spotTwo').css('left','45%').css('transition','left 4s');
-      $('#spotThree').css('left','35%').css('transition','left 4s');
-    }else{
-      $('#spotTwo').css('left','55%').css('transition','left 4s');
-      $('#spotThree').css('left','35%').css('transition','left 4s');
-    }
-  }else if($('#spotTwo').css('left')=='45%'){
-    if($('#spotThree').css('left')=='35%'){
-      $('#spotTwo').css('left','35%').css('transition','left 4s');
-      $('#spotThree').css('left','45%').css('transition','left 4s');
-    }else{
-      $('#spotTwo').css('left','55%').css('transition','left 4s');
-      $('#spotThree').css('left','45%').css('transition','left 4s');
-    }
-  }else if($('#spotTwo').css('left')=='55%'){
-    if($('#spotThree').css('left')=='35%'){
-      $('#spotTwo').css('left','35%').css('transition','left 4s');
-      $('#spotThree').css('left','55%').css('transition','left 4s');
-    }else{
-      $('#spotTwo').css('left','45%').css('transition','left 4s');
-      $('#spotThree').css('left','55%').css('transition','left 4s');
-    }
-  }
-}
-function moveBox_1_3 (){
-  if($('#spotOne').css('left')=='35%'){
-    if($('spotThree').css('left')=='45%'){
-      $('#spotOne').css('left','45%').css('transition','left 4s');
-      $('#spotThree').css('left','35%').css('transition','left 4s');
-    }else{
-      $('#spotOne').css('left','55%').css('transition','left 4s');
-      $('#spotThree').css('left','35%').css('transition','left 4s');
-    }
-  }else if($('#spotOne').css('left')=='45%'){
-    if($('#spotThree').css('left')=='35%'){
-      $('#spotOne').css('left','35%').css('transition','left 4s');
-      $('#spotThree').css('left','45%').css('transition','left 4s');
-    }else{
-      $('#spotOne').css('left','55%').css('transition','left 4s');
-      $('#spotThree').css('left','45%').css('transition','left 4s');
-    }
-  }else if($('#spotOne').css('left')=='55%'){
-    if($('#spotThree').css('left')=='35%'){
-      $('#spotOne').css('left','35%').css('transition','left 4s');
-      $('#spotThree').css('left','55%').css('transition','left 4s');
-    }else{
-      $('#spotOne').css('left','45%').css('transition','left 4s');
-      $('#spotThree').css('left','55%').css('transition','left 4s');
-    }
-  }
-}
+};
 
-function pickMove() {
-  var pick = Math.round(Math.random() * (3 - 1) + 1);
-  if(pick == 1){
-    moveBox_1_2();
-    console.log('moved 1 and 2');
-    alert('moved box');
-  }else if (pick == 2) {
-    moveBox_2_3();
-    console.log('moved 2 and 3');
-    alert('moved box');
-  }else{
-    moveBox_1_3();
-    console.log('moved 1 and 3');
-    alert('moved box');
-  }
-}
 
 $(document).ready(function(){
-  setInterval(function(){
-    $('div').css('top','12%').css('transition','top 4s');
-  },3000);
-  setInterval(function(){
-    for(var i = 0;i<6;i++){
-      pickMove();
+
+  $('.playerScore').append(playerScore);
+  $('.compScore').append(comptScore);
+
+  $('div').removeClass('box');
+  $('div').removeClass('boxLeft');
+  $('.start').on('click',function(){
+    $('div').css('top','12%').css('transition', "top 5s");
+    $('#spotTwo').addClass('winningSpot');
+    gamePlaying = setInterval(function(){
+        $('.circle').hide();
+        for(var i = 0;i<=10;i++){
+          setTimeout(function(){
+            movingBox();
+          },2000);
+        }
+      },12000);
+    gameMessage = setInterval(function(){
+      alert('Find the Ball!\nPick a box that you believe has the ball.');
+      $('div').css('background-color','orange');
+    },16000);
+  });
+  $('div').on('click',function winnerLoser() {
+    clearTimeout(gameMessage);
+    $(this).addClass('picked');
+    if($('#spotTwo').css('left')=='30%'){
+      $('.circle').css('margin-left',"10%");
+    }else if($('#spotTwo').css('left')=='43%'){
+      $('.circle').css('margin-left',"36%");
+    }else if($('#spotTwo').css('left')=='55%'){
+      $('.circle').css('margin-left',"50%");
     }
-  },7000);
+    $('.circle').show();
+    setTimeout(function() {
+      $('.circle').hide();
+    },4000);
+    if($(this).hasClass('picked')==true && $(this).hasClass('winningSpot')==true){
+      alert("Winner!!!");
+      playerScore++;
+        $('.playerScore').empty();
+        $('.playerScore').append("<p>Your Score</p>" + playerScore);
+      $('div').removeClass('picked').css('background-color','yellow');
+
+    }else{
+      alert("Try again!");
+      comptScore++;
+      $('.compScore').empty();
+      $('.compScore').append("<p>Comp Score</p>"+comptScore);
+      if($('#spotTwo').css('left')=='30%'){
+        $('.circle').css('margin-left',"10%");
+      }else if($('#spotTwo').css('left')=='43%'){
+        $('.circle').css('margin-left',"36%");
+      }else if($('#spotTwo').css('left')=='55%'){
+        $('.circle').css('margin-left',"50%");
+      }
+      $('.circle').show();
+      setTimeout(function() {
+        $('.circle').hide();
+      },2000);
+      $('div').removeClass('picked');
+
+    }
+  });
+  $('.stop').on('click',function(){
+    $('.circle').show();
+    $('div').css('top','40%');
+    clearInterval(gamePlaying);
+  });
 });
